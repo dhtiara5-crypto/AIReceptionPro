@@ -1,0 +1,37 @@
+AI受付 Pro Android APK v1.0（Galaxy S23専用）
+
+■ この版の特徴
+- Android専用アプリとしてインストール
+- 画面最上部に着信番号を必ず大きく表示
+- 下部は既存のApps Script AI受付をアプリ内WebViewで表示
+- MacroDroidからカスタムURLで番号を直接受信
+- PHONE_STATE受信も実装（端末・Android設定により通知経由になる場合があります）
+
+■ 一番確実なMacroDroid設定
+現在のHTTPリクエストは削除してください。
+アクションは「Webサイトを開く」または「URLを開く」を使用し、次を設定します。
+
+  aireception://incoming?phone={call_number}
+
+{call_number} は手入力ではなく、MacroDroidのマジックテキストから着信番号を選択してください。
+このURLはChromeではなくAI受付 Pro APKを直接開きます。
+
+■ 初回起動
+1. 電話、通話履歴、通知の権限をすべて許可
+2. Galaxy設定 → アプリ → AI受付 Pro → バッテリー → 制限なし
+3. 通知を許可
+4. MacroDroidからテスト着信
+
+■ Android StudioでAPK作成
+1. Android Studioでこのフォルダを開く
+2. Gradle同期を待つ
+3. Build → Build APK(s)
+4. app/build/outputs/apk/debug/app-debug.apk をGalaxy S23へ転送
+5. 不明なアプリのインストールを許可してインストール
+
+■ 注意
+Android 14以降はバックグラウンドから画面を強制表示する制限があります。
+そのため、最も確実なのはMacroDroidから
+  aireception://incoming?phone={call_number}
+を開く方式です。
+PHONE_STATE受信は補助機能として、着信通知と番号保存を行います。
